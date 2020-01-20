@@ -55,7 +55,7 @@ Select the flask/single_view.html file and paste the Access Key in at line 19.
 Save and go back to the Project.  
 
 Go to the **Applications** section and select "New Application" with the following:
-* **Name**: Visual Churn Analysis
+* **Name**: Visual Wine Analysis
 * **Subdomain**: wine-prediction
 * **Script**: flask_app.py
 * **Kernel**: Python 3
@@ -77,8 +77,8 @@ can see how adjusting any one of the features will change the instance's predict
 By default this code trains a gradiant boosted classifier for the wine dataset.  
 There are other datasets and other model types as well.  Look at run_experiment.py for examples or set the Project environment variables to try other datasets and models:  
 Name              Value  
-CHURN_DATASET     ibm (default) | breastcancer | iris  
-CHURN_MODEL_TYPE  linear (default) | gb | nonlinear | voting  
+DATASET     ibm (default) | breastcancer | iris  
+MODEL_TYPE  linear (default) | gb | nonlinear | voting  
 
 
 **NOTE** that not all of these options have been fully tested so your mileage may vary.
