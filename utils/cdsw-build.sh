@@ -22,9 +22,3 @@ if [[ ! -d /home/cdsw/R ]]
 then 
   mkdir -m 755 /home/cdsw/R
 fi
-
-
-#if [ -f "spark_rf.tar" ]
-#then
-#  tar -xf ./spark_rf.tar
-#fi 

@@ -16,7 +16,7 @@
     </div>
     <div id='features' style='clear:both;'></div>
     <script>
-        const accessKey = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+        const accessKey = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
         in_url = new URL(window.location.href)
         out_url = new URL(window.location.origin + window.location.pathname)
 
@@ -77,7 +77,7 @@
             })
 
             var prediction_value = d3.select("#pred_value")
-                .text(JSON.parse(values[2].response).probability.toFixed(3))
+                .text(JSON.parse(values[2].response).quality_prediction)//probability.toFixed(3))
                 .attr("style","background:" + color(JSON.parse(values[2].response).probability) +";padding:10px;");
 
             var main_divs = d3.select("#features").selectAll(".main_div")
