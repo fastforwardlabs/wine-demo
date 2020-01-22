@@ -8,8 +8,6 @@ sys.path.append("/home/cdsw")
 from explainer.utils import log_environment
 from explainer.explainedmodel import ExplainedModel
 
-
-#os.environ['MODEL_NAME'] = '20200119T234034_wine_gb'
 em = ExplainedModel(os.getenv('MODEL_NAME', 'test_model'))
 
 def predict(args):

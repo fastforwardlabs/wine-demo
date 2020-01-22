@@ -3,9 +3,13 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.types import Row, StructField, StructType, StringType, IntegerType
 
+s3_bucket = os.environ.get('S3_BUCKET', "s3a://ml-field/demo/wine/")
+s3_bucket_region = os.environ.get('S3_BUCKET_REGION', "us-west-2")
+
 spark = SparkSession.builder\
     .appName("Import Wine Table")\
-    .config("spark.yarn.access.hadoopFileSystems","s3a://ml-field/demo/wine/")\
+    .config("spark.yarn.access.hadoopFileSystems",s3_bucket)\
+    .config("spark.hadoop.fs.s3a.s3guard.ddb.region", s3_bucket_region)\
     .getOrCreate()
 
 wine_data_raw = spark.sql("SELECT * FROM `default`.`wine`")
@@ -27,9 +31,9 @@ spark.sql("select distinct(Quality), count(*) from wine GROUP BY Quality").show(
 wine_data = wine_data_raw.filter(wine_data_raw.Quality != "1")
 total_wines = wine_data.count()
 good_wines = wine_data.filter(wine_data.Quality == 'Excellent').count()
-good_wines = wine_data.filter(wine_data.Quality == 'Poor').count()
+poor_wines = wine_data.filter(wine_data.Quality == 'Poor').count()
 
-"Wines total: {}, Good : {}, Poor : {}".format(total_wines,good_wines,good_wines )
+"Wines total: {}, Good : {}, Poor : {}".format(total_wines,good_wines,poor_wines )
 
 
 # # 2. Data visualisation ( using mathplotlib and Seaborn)

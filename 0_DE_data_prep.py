@@ -3,13 +3,16 @@
 #Data taken from http://...WineNewGBTDataSet.csv
 #wget http://.../WineNewGBTDataSet.csv; aws s3 cp WineNewGBTDataSet.csv s3://ml-field/demo/wine/; rm WineNewGBTDataSet.csv
 
+s3_bucket = os.environ.get('S3_BUCKET', "s3a://ml-field/demo/wine/")
+s3_bucket_region = os.environ.get('S3_BUCKET_REGION', "us-west-2")
 
 from pyspark.sql import SparkSession
 from pyspark.sql.types import Row, StructField, StructType, StringType, IntegerType
 
 spark = SparkSession.builder\
     .appName("Setup Wine Table")\
-    .config("spark.yarn.access.hadoopFileSystems","s3a://ml-field/demo/wine/")\
+    .config("spark.yarn.access.hadoopFileSystems",s3_bucket)\
+    .config("spark.hadoop.fs.s3a.s3guard.ddb.region", s3_bucket_region)\
     .getOrCreate()
 
 spark.sql("SHOW databases").show()

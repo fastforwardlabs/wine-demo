@@ -6,8 +6,9 @@ import namegenerator
 from explainer.utils import data_dir
 from explainer.data import utils
 
-S3_BUCKET = "s3a://ml-field/demo/wine/"
-S3_BUCKET_REGION = "us-west-2"
+
+s3_bucket = os.environ.get('S3_BUCKET')
+s3_bucket_region = os.environ.get('S3_BUCKET_REGION')
 
 idcol = 'ranName'
 labelcol = 'Quality'
@@ -42,8 +43,8 @@ def load_dataset():
 
     spark = SparkSession.builder\
         .appName("Import Wine Table")\
-        .config("spark.yarn.access.hadoopFileSystems",S3_BUCKET)\
-        .config("spark.hadoop.fs.s3a.s3guard.ddb.region", S3_BUCKET_REGION)\
+        .config("spark.yarn.access.hadoopFileSystems",s3_bucket)\
+        .config("spark.hadoop.fs.s3a.s3guard.ddb.region", s3_bucket_region)\
         .getOrCreate()
 
     df = spark.sql("SELECT * FROM `default`.`wine`").toPandas()

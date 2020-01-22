@@ -1,20 +1,29 @@
-#This code will train a model
+#WORK IN PROGRESS!!!!
 
+
+
+
+#This code will train a model based on arguments passed to the Experiments feature of CML.
+
+#args for experiment: wine_hiveS3 gb s3a://ml-field/demo/wine/ us-west-2
 
 
 from churnexplainer import train
 from churnexplainer.data import dataset, load_dataset
 import cdsw
 
-#Set model type to one of linear | gb | nonlinear | voting"
-#For CML Experiments across multiple model types comment this line out 
-#and pass via arguments to the experiment. 
 #os.environ['MODEL_TYPE'] = 'gb'
 os.gentenv('MODEL_TYPE', sys.argv[1])
 
-# ibm | breastcancer | iris | telco | wine
-#os.environ['DATASET'] = 'wine'
+#os.environ['DATASET'] = 'wine_hiveS3'
 os.gentenv('DATASET', sys.argv[2])
+
+#os.environ['S3_BUCKET'] = 's3a://ml-field/demo/wine/'
+os.gentenv('S3_BUCKET', sys.argv[3])
+
+#os.environ['S3_BUCKET_REGION'] = 'us-west-2'
+os.gentenv('S3_BUCKET_REGION', sys.argv[4])
+
 
 train_score, test_score, model_path = train.experiment_and_save()
 
