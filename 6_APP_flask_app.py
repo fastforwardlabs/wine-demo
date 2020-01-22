@@ -15,7 +15,7 @@ log = logging.getLogger('werkzeug')
 log.setLevel(logging.DEBUG)
 
 em = ExplainedModel(os.getenv('MODEL_NAME', 'test_model'))
-sample_size = 50
+sample_size = 20
 
 app= Flask(__name__,static_url_path='')
 @app.route('/')
