@@ -12,7 +12,7 @@ from explainer.explainedmodel import ExplainedModel
 
 # This reduces the the output to the 
 log = logging.getLogger('werkzeug')
-log.setLevel(logging.DEBUG)
+log.setLevel(logging.ERROR)
 
 em = ExplainedModel(os.getenv('MODEL_NAME', 'test_model'))
 sample_size = 20
