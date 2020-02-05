@@ -3,10 +3,10 @@
 # variable
 
 
-os.environ['DATASET'] = 'wine_hiveS3'
+os.environ['DATASET'] = 'wine'
 os.environ['MODEL_TYPE'] = 'gb'
-os.environ['S3_BUCKET'] = 's3a://ml-field/demo/wine/'
-os.environ['S3_BUCKET_REGION'] = 'us-west-2'
+#os.environ['S3_BUCKET'] = 's3a://ml-field/demo/wine/'
+#os.environ['S3_BUCKET_REGION'] = 'us-west-2'
 
 
 from explainer import train
